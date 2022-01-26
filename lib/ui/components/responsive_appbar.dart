@@ -94,10 +94,15 @@ class ResponsiveAppbar extends StatelessWidget implements PreferredSizeWidget {
           Padding(
             padding: collapsedActionPadding ?? EdgeInsets.all(8),
             child: InkWell(
-              onTap: onCollapsedActionClicked,
+              onTap: () {
+                Scaffold.of(context).openEndDrawer();
+              },
               child: collapsedAction,
             ),
           ),
         ],
       );
 }
+/*
+
+ */

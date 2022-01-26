@@ -16,12 +16,30 @@ class RootScreen extends StatelessWidget {
   final PageController pageController =
       PageController(initialPage: 0, keepPage: false);
   final ScrollController controller = ScrollController();
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
 
   @override
   Widget build(BuildContext context) {
-    var deviceType = ResponsiveWidget.of(context).deviceType;
+    var deviceType = ResponsiveWidget.of(context);
     var ratioType = ResponsiveWidget.of(context).ratioType;
     return Scaffold(
+      endDrawer: (deviceType.isDesktop)
+          ? null
+          : Drawer(
+              child: Column(
+                children: [
+                  placeHolder(80, 20),
+                  defaultVerticalSpace,
+                  placeHolder(80, 20),
+                  defaultVerticalSpace,
+                  placeHolder(80, 20),
+                  defaultVerticalSpace,
+                  placeHolder(80, 20),
+                  defaultVerticalSpace,
+                  placeHolder(80, 20),
+                ],
+              ),
+            ),
       appBar: ResponsiveAppbar(
         destinations: [
           placeHolder(80, 20),
@@ -33,7 +51,9 @@ class RootScreen extends StatelessWidget {
         leading: placeHolder(80, 60),
         collapsedAction: Icon(Icons.menu),
         actionItemSpacing: 16,
-        onCollapsedActionClicked: () {},
+        onCollapsedActionClicked: () {
+          _scaffoldKey.currentState!.openEndDrawer();
+        },
         onActionItemClicked: (index) {
           print('Clicked $index');
 
