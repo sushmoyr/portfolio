@@ -13,6 +13,10 @@ class RootScreen extends StatelessWidget {
     AboutPage(),
   ];
 
+  final PageController pageController =
+      PageController(initialPage: 0, keepPage: false);
+  final ScrollController controller = ScrollController();
+
   @override
   Widget build(BuildContext context) {
     var deviceType = ResponsiveWidget.of(context).deviceType;
@@ -30,11 +34,32 @@ class RootScreen extends StatelessWidget {
         collapsedAction: Icon(Icons.menu),
         actionItemSpacing: 16,
         onCollapsedActionClicked: () {},
+        onActionItemClicked: (index) {
+          print('Clicked $index');
+
+          if (index < pages.length) {
+            var targetOffset =
+                index * ResponsiveWidget.of(context).preferredHeight;
+            controller.animateTo(
+              targetOffset,
+              duration: Duration(seconds: 1),
+              curve: Curves.decelerate,
+            );
+          }
+        },
       ),
-      body: ListView.builder(
-        itemCount: pages.length,
-        itemBuilder: (context, index) => pages[index],
+      body: ListView(
+        children: pages,
+        controller: controller,
+        cacheExtent: 0,
       ),
     );
   }
 }
+
+/*PageView(
+scrollDirection: Axis.vertical,
+children: pages,
+pageSnapping: false,
+controller: pageController,
+),*/

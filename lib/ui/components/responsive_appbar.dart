@@ -68,7 +68,15 @@ class ResponsiveAppbar extends StatelessWidget implements PreferredSizeWidget {
             child: leading,
           ),
           Wrap(
-            children: destinations,
+            children: List.generate(
+              destinations.length,
+              (index) => InkWell(
+                onTap: (onActionItemClicked != null)
+                    ? () => onActionItemClicked!(index)
+                    : null,
+                child: destinations[index],
+              ),
+            ),
             spacing: actionItemSpacing ?? 0,
           ),
         ],
