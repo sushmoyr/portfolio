@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 
 class InheritedResponsiveWidget extends InheritedWidget {
-  final DeviceType deviceType;
+  final ResponsiveData data;
 
   const InheritedResponsiveWidget(
-      {Key? key, required this.deviceType, required Widget child})
+      {Key? key, required this.data, required Widget child})
       : super(key: key, child: child);
 
   @override
   bool updateShouldNotify(InheritedResponsiveWidget oldWidget) =>
-      deviceType != oldWidget.deviceType;
+      data != oldWidget.data;
 }
 
 class ResponsiveWidget extends StatelessWidget {
@@ -19,7 +19,7 @@ class ResponsiveWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InheritedResponsiveWidget(
-        deviceType: _deviceType(context), child: child);
+        data: ResponsiveData(_deviceType(context)), child: child);
   }
 
   DeviceType _deviceType(BuildContext context) {
@@ -33,15 +33,27 @@ class ResponsiveWidget extends StatelessWidget {
     }
   }
 
-  static DeviceType of(BuildContext context) {
+  static ResponsiveData of(BuildContext context) {
     final InheritedResponsiveWidget? data =
         context.dependOnInheritedWidgetOfExactType<InheritedResponsiveWidget>();
     if (data != null) {
-      return data.deviceType;
+      return data.data;
     } else {
       throw Exception('No Inherited Widget Found');
     }
   }
+}
+
+class ResponsiveData {
+  final DeviceType deviceType;
+
+  const ResponsiveData(this.deviceType);
+
+  get isMobile => deviceType == DeviceType.mobile;
+
+  get isDesktop => deviceType == DeviceType.desktop;
+
+  get isTablet => deviceType == DeviceType.tab;
 }
 
 enum DeviceType { desktop, tab, mobile }
