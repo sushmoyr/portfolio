@@ -23,10 +23,22 @@ class ResponsiveWidget extends StatelessWidget {
   }
 
   DeviceType _deviceType(BuildContext context) {
+    var orientation = MediaQuery.of(context).orientation;
+
+    double breakPoint;
+
+    /*if (orientation == Orientation.portrait) {
+      breakPoint = MediaQuery.of(context).size.width;
+    } else {
+      breakPoint = MediaQuery.of(context).size.height;
+    }
+    print(orientation);
+    print(breakPoint);*/
+
     double screenWidth = MediaQuery.of(context).size.width;
-    if (screenWidth <= 768) {
+    if (screenWidth <= 640) {
       return DeviceType.mobile;
-    } else if (screenWidth <= 1366) {
+    } else if (screenWidth <= 1007) {
       return DeviceType.tab;
     } else {
       return DeviceType.desktop;

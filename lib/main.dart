@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio/ui/components/responsive_appbar.dart';
+import 'package:portfolio/ui/root_page.dart';
 import 'package:portfolio/ui/widgets/responsive.dart';
-import 'package:portfolio/utils/constants.dart';
 
 void main() {
   runApp(const MyApp());
@@ -20,34 +19,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: const ResponsiveWidget(
-        child: HomePage(),
-      ),
-    );
-  }
-}
-
-class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    var deviceType = ResponsiveWidget.of(context).deviceType;
-    return Scaffold(
-      appBar: ResponsiveAppbar(
-        destinations: [
-          placeHolder(80, 20),
-          placeHolder(80, 20),
-          placeHolder(80, 20),
-          placeHolder(80, 20),
-          placeHolder(80, 20),
-        ],
-        leading: placeHolder(80, 60),
-        collapsedAction: Icon(Icons.menu),
-        actionItemSpacing: 16,
-        onCollapsedActionClicked: () {},
-      ),
-      body: Center(
-        child: Text(deviceType.name.toString()),
+        child: RootScreen(),
       ),
     );
   }
