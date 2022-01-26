@@ -18,8 +18,38 @@ class ResponsiveWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //Calculate Preferred Size For Pages
+    var deviceType = _deviceType(context);
+    var ratioType = _ratioType(context);
+    var ratio = MediaQuery.of(context).size.aspectRatio;
+    var screenSize = MediaQuery.of(context).size;
+
+    var height;
+
+    if (deviceType == DeviceType.mobile) {
+      if (ratio <= RatioBreakPoints.mobileRatio) {
+        height = screenSize.height;
+      } else {
+        height = screenSize.width / RatioBreakPoints.mobileRatio;
+      }
+    } else if (deviceType == DeviceType.tab) {
+      if (ratio <= RatioBreakPoints.tabletRatio) {
+        height = screenSize.height;
+      } else {
+        height = screenSize.width / RatioBreakPoints.tabletRatio;
+      }
+    } else {
+      height = screenSize.height;
+    }
+
     return InheritedResponsiveWidget(
-        data: ResponsiveData(_deviceType(context)), child: child);
+        data: ResponsiveData(
+          deviceType,
+          ratioType,
+          ratio,
+          height,
+        ),
+        child: child);
   }
 
   DeviceType _deviceType(BuildContext context) {
@@ -45,6 +75,18 @@ class ResponsiveWidget extends StatelessWidget {
     }
   }
 
+  RatioType _ratioType(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+    double ratio = size.aspectRatio;
+    if (ratio <= RatioBreakPoints.mobileRatio) {
+      return RatioType.mobile;
+    } else if (ratio <= RatioBreakPoints.tabletRatio) {
+      return RatioType.tab;
+    } else {
+      return RatioType.desktop;
+    }
+  }
+
   static ResponsiveData of(BuildContext context) {
     final InheritedResponsiveWidget? data =
         context.dependOnInheritedWidgetOfExactType<InheritedResponsiveWidget>();
@@ -58,17 +100,43 @@ class ResponsiveWidget extends StatelessWidget {
 
 class ResponsiveData {
   final DeviceType deviceType;
+  final RatioType ratioType;
+  final double aspectRatio;
+  final double preferredHeight;
 
-  const ResponsiveData(this.deviceType);
+  const ResponsiveData(
+    this.deviceType,
+    this.ratioType,
+    this.aspectRatio,
+    this.preferredHeight,
+  );
 
   get isMobile => deviceType == DeviceType.mobile;
 
   get isDesktop => deviceType == DeviceType.desktop;
 
   get isTablet => deviceType == DeviceType.tab;
+
+  get isMobileRatio => ratioType == RatioType.mobile;
+
+  get isDesktopRatio => ratioType == RatioType.desktop;
+
+  get isTabletRatio => ratioType == RatioType.tab;
 }
 
 enum DeviceType { desktop, tab, mobile }
+
+enum RatioType { desktop, tab, mobile }
+
+class RatioBreakPoints {
+  static const mobileRatio = 0.65;
+  static const tabletRatio = 1.2;
+}
+
+class SizeBreakPoints {
+  static const mobileWidth = 640;
+  static const tabletWidth = 1007;
+}
 
 /*
 
