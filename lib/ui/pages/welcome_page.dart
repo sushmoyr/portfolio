@@ -11,7 +11,7 @@ class WelcomePage extends StatelessWidget {
     return Container(
       width: MediaQuery.of(context).size.width,
       height: responsiveData.preferredHeight - kToolbarHeight,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         image: DecorationImage(
           image: AssetImage('assets/images/home-banner.jpg'),
           fit: BoxFit.cover,
