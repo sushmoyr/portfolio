@@ -47,7 +47,7 @@ class EndDrawer extends StatelessWidget {
         onTap: () {
           if (onDestinationClicked != null) {
             onDestinationClicked!(i);
-            Scaffold.of(context).closeEndDrawer();
+            Navigator.pop(context);
           }
         },
       );

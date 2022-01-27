@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/ui/widgets/responsive.dart';
 
-class ResponsiveAppbar extends StatelessWidget implements PreferredSizeWidget {
+enum AppbarOnScrollBehaviour { hide, elevate }
+
+class ResponsiveAppbar extends StatefulWidget implements PreferredSizeWidget {
   const ResponsiveAppbar({
     Key? key,
     required this.destinations,
@@ -16,6 +18,8 @@ class ResponsiveAppbar extends StatelessWidget implements PreferredSizeWidget {
     this.elevation,
     this.backgroundColor,
     this.collapsedActionPadding,
+    this.behaviour = AppbarOnScrollBehaviour.elevate,
+    this.scrollController,
   }) : super(key: key);
 
   final List<Widget> destinations;
@@ -30,25 +34,65 @@ class ResponsiveAppbar extends StatelessWidget implements PreferredSizeWidget {
   final double? actionItemSpacing;
   final double? elevation;
   final Color? backgroundColor;
+  final AppbarOnScrollBehaviour behaviour;
+  final ScrollController? scrollController;
+
+  @override
+  State<ResponsiveAppbar> createState() => _ResponsiveAppbarState();
+
+  @override
+  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
+}
+
+class _ResponsiveAppbarState extends State<ResponsiveAppbar> {
+  @override
+  void initState() {
+    if (widget.scrollController != null) {
+      widget.scrollController!.addListener(_scrollListener);
+    }
+    super.initState();
+  }
+
+  bool elevated = false;
+  bool hidden = false;
+  double elevation = 0;
+
+  void _scrollListener() {
+    var controller = widget.scrollController;
+    if (widget.behaviour == AppbarOnScrollBehaviour.elevate) {
+      if (controller!.offset > kToolbarHeight) {
+        if (!elevated) {
+          setState(() {
+            elevated = true;
+            elevation = widget.elevation ?? 4;
+          });
+        }
+      } else {
+        if (elevated) {
+          setState(() {
+            elevation = 0;
+            elevated = false;
+          });
+        }
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     var responsiveData = ResponsiveWidget.of(context);
     return Material(
-      elevation: elevation ?? 4,
-      color: backgroundColor,
+      elevation: elevation,
+      color: widget.backgroundColor,
       child: Padding(
         padding: EdgeInsets.symmetric(
-          horizontal: horizontalPadding,
-          vertical: verticalPadding,
+          horizontal: widget.horizontalPadding,
+          vertical: widget.verticalPadding,
         ),
         child: _buildAppBar(context, responsiveData),
       ),
     );
   }
-
-  @override
-  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 
   Widget _buildAppBar(BuildContext context, ResponsiveData responsiveData) {
     if (responsiveData.isDesktop) {
@@ -64,20 +108,20 @@ class ResponsiveAppbar extends StatelessWidget implements PreferredSizeWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Padding(
-            padding: leadingPadding ?? EdgeInsets.all(8),
-            child: leading,
+            padding: widget.leadingPadding ?? EdgeInsets.all(8),
+            child: widget.leading,
           ),
           Wrap(
             children: List.generate(
-              destinations.length,
+              widget.destinations.length,
               (index) => InkWell(
-                onTap: (onActionItemClicked != null)
-                    ? () => onActionItemClicked!(index)
+                onTap: (widget.onActionItemClicked != null)
+                    ? () => widget.onActionItemClicked!(index)
                     : null,
-                child: destinations[index],
+                child: widget.destinations[index],
               ),
             ),
-            spacing: actionItemSpacing ?? 0,
+            spacing: widget.actionItemSpacing ?? 0,
           ),
         ],
       );
@@ -88,16 +132,16 @@ class ResponsiveAppbar extends StatelessWidget implements PreferredSizeWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Padding(
-            padding: leadingPadding ?? EdgeInsets.all(8),
-            child: leading,
+            padding: widget.leadingPadding ?? EdgeInsets.all(8),
+            child: widget.leading,
           ),
           Padding(
-            padding: collapsedActionPadding ?? EdgeInsets.all(8),
+            padding: widget.collapsedActionPadding ?? EdgeInsets.all(8),
             child: InkWell(
               onTap: () {
                 Scaffold.of(context).openEndDrawer();
               },
-              child: collapsedAction,
+              child: widget.collapsedAction,
             ),
           ),
         ],

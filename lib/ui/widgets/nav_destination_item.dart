@@ -18,7 +18,6 @@ class NavDestinationItem extends StatefulWidget {
 }
 
 class _NavDestinationItemState extends State<NavDestinationItem> {
-  double elevation = 0;
   late ValueNotifier<bool> isHovering;
 
   @override
@@ -37,32 +36,40 @@ class _NavDestinationItemState extends State<NavDestinationItem> {
   }
 
   void hoverListener() {
-    setState(() {
-      elevation = (isHovering.value) ? 8 : 0;
-    });
+    setState(() {});
   }
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      child: MouseRegion(
-        child: ColorFiltered(
-          colorFilter: ColorFilter.mode(
-            (widget.isSelected)
-                ? widget.selectedColor ?? Theme.of(context).primaryColor
-                : Theme.of(context).disabledColor,
-            BlendMode.color,
+    return MouseRegion(
+      child: Column(
+        children: [
+          ColorFiltered(
+            colorFilter: ColorFilter.mode(
+              (widget.isSelected)
+                  ? widget.selectedColor ?? Theme.of(context).primaryColor
+                  : Theme.of(context).disabledColor,
+              BlendMode.srcATop,
+            ),
+            child: widget.child,
           ),
-          child: widget.child,
-        ),
-        onEnter: (event) {
-          isHovering.value = true;
-        },
-        onExit: (event) {
-          isHovering.value = false;
-        },
+          (isHovering.value || widget.isSelected)
+              ? Container(
+                  height: 1,
+                  width: 16,
+                  color: (widget.isSelected)
+                      ? (widget.selectedColor ?? Theme.of(context).primaryColor)
+                      : Theme.of(context).disabledColor,
+                )
+              : Container(),
+        ],
       ),
-      elevation: elevation,
+      onEnter: (event) {
+        isHovering.value = true;
+      },
+      onExit: (event) {
+        isHovering.value = false;
+      },
     );
   }
 }

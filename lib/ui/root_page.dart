@@ -50,23 +50,23 @@ class _RootScreenState extends State<RootScreen> {
 
     List<Widget> destinations = [
       NavDestinationItem(
-        child: placeHolder(80, 20),
+        child: home,
         isSelected: (currentPage == 0),
       ),
       NavDestinationItem(
-        child: placeHolder(80, 20),
+        child: about,
         isSelected: (currentPage == 1),
       ),
       NavDestinationItem(
-        child: placeHolder(80, 20),
+        child: services,
         isSelected: (currentPage == 2),
       ),
       NavDestinationItem(
-        child: placeHolder(80, 20),
+        child: blog,
         isSelected: (currentPage == 3),
       ),
       NavDestinationItem(
-        child: placeHolder(80, 20),
+        child: contact,
         isSelected: (currentPage == 4),
       ),
     ];
@@ -87,8 +87,14 @@ class _RootScreenState extends State<RootScreen> {
             ),
       appBar: ResponsiveAppbar(
         destinations: destinations,
-        leading: placeHolder(80, 60),
+        scrollController: pageController,
+        elevation: 8,
+        leading: Image.asset(
+          'assets/images/logo.png',
+          fit: BoxFit.fitHeight,
+        ),
         collapsedAction: Icon(Icons.menu),
+        verticalPadding: 0,
         actionItemSpacing: 16,
         onActionItemClicked: _changePage,
       ),

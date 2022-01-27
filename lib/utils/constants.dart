@@ -23,3 +23,8 @@ const String name = 'SUSHMOY ROY';
 const String welcomeDescription =
     'You will begin to realise why this exercise is called the Dickens Pattern (with reference to the ghost showing Scrooge some different futures)';
 const String hireMe = 'Hire Me';
+const Widget home = Text('Home');
+const Widget about = Text('About');
+const Widget services = Text('Services');
+const Widget blog = Text('Blog');
+const Widget contact = Text('Contact');
