@@ -5,13 +5,11 @@ class NavDestinationItem extends StatefulWidget {
     Key? key,
     this.isSelected = false,
     this.selectedColor,
-    this.hoverColor,
     this.hoverAnimation = false,
     required this.child,
   }) : super(key: key);
   final bool isSelected;
   final Color? selectedColor;
-  final Color? hoverColor;
   final bool hoverAnimation;
   final Widget child;
 

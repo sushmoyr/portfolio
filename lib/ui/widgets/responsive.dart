@@ -25,13 +25,17 @@ class ResponsiveWidget extends StatelessWidget {
     var screenSize = MediaQuery.of(context).size;
 
     var height;
+    print(ratio);
 
     if (deviceType == DeviceType.mobile) {
       if (ratio <= RatioBreakPoints.mobileRatio) {
         height = screenSize.height;
       } else {
+        print('change');
         height = screenSize.width / RatioBreakPoints.mobileRatio;
       }
+
+      print('Height: $height');
     } else if (deviceType == DeviceType.tab) {
       if (ratio <= RatioBreakPoints.tabletRatio) {
         height = screenSize.height;
