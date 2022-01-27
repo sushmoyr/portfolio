@@ -44,6 +44,12 @@ const String nodeJs = 'NodeJs';
 const String native = 'Android';
 const String ui = 'UI/UX';
 
+const String dart = 'Dart';
+const String kotlin = 'Kotlin';
+const String cpp = 'C++';
+const String javascript = 'Javascript';
+const String java = 'Java';
+
 const Widget home = Text('Home');
 const Widget about = Text('About');
 const Widget services = Text('Services');

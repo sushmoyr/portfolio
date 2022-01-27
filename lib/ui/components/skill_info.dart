@@ -27,31 +27,37 @@ class SkillInfo extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Text(
-                  'TOOLS EXPERTNESS',
+                  'LANGUAGES',
                   style: Theme.of(context).textTheme.headline6,
                 ),
                 defaultVerticalSpace,
                 AnimatedProgressIndicator(
-                  labelText: flutter,
-                  progress: 0.5,
+                  labelText: kotlin,
+                  progress: 0.8,
                   labelTextStyle: indicatorTextStyle,
                 ),
                 gap,
                 AnimatedProgressIndicator(
-                  labelText: native,
+                  labelText: dart,
                   progress: 0.7,
                   labelTextStyle: indicatorTextStyle,
                 ),
                 gap,
                 AnimatedProgressIndicator(
-                  labelText: nodeJs,
+                  labelText: java,
                   progress: 0.5,
                   labelTextStyle: indicatorTextStyle,
                 ),
                 gap,
                 AnimatedProgressIndicator(
-                  labelText: ui,
+                  labelText: cpp,
                   progress: 0.7,
+                  labelTextStyle: indicatorTextStyle,
+                ),
+                gap,
+                AnimatedProgressIndicator(
+                  labelText: javascript,
+                  progress: 0.4,
                   labelTextStyle: indicatorTextStyle,
                 ),
                 gap,

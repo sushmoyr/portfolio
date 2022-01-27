@@ -63,7 +63,7 @@ class AboutInfo extends StatelessWidget {
             padding: EdgeInsets.all(16),
           ).slideAnimation(
             direction: SlideDirection.fromBottom,
-            duration: Duration(milliseconds: 1000),
+            duration: const Duration(milliseconds: 1000),
           ),
         ),
         const SizedBox(width: 36),
@@ -76,7 +76,7 @@ class AboutInfo extends StatelessWidget {
             isSquare: true,
           ).slideAnimation(
             direction: SlideDirection.fromBottom,
-            duration: Duration(milliseconds: 1200),
+            duration: const Duration(milliseconds: 1200),
           ),
         ),
         const SizedBox(width: 36),
