@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio/ui/components/about_info.dart';
 import 'package:portfolio/ui/components/components.dart';
 import 'package:portfolio/ui/widgets/widgets.dart';
 import 'package:portfolio/utils/constants.dart';
@@ -16,7 +15,6 @@ class AboutPage extends StatelessWidget {
       height: (responsive.isDesktop)
           ? responsive.preferredHeight - kToolbarHeight
           : null,
-      color: Colors.blue,
       child: RowColumn(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         axis: (responsive.isDesktop) ? Axis.horizontal : Axis.vertical,
@@ -31,7 +29,7 @@ class AboutPage extends StatelessWidget {
     return [
       Expanded(
         flex: 1,
-        child: _getAboutInfo(),
+        child: _getAboutInfo(Axis.horizontal),
       ),
       Expanded(
         flex: 1,
@@ -42,16 +40,18 @@ class AboutPage extends StatelessWidget {
 
   _buildOtherChildren(BuildContext context) {
     return [
-      _getAboutInfo(),
+      _getAboutInfo(Axis.vertical),
       defaultVerticalSpace,
       _getSkillInfo(),
     ];
   }
 
-  Widget _getAboutInfo() {
+  Widget _getAboutInfo(Axis direction) {
     return FractionallySizedBox(
       widthFactor: 0.8,
-      child: AboutInfo(),
+      child: AboutInfo(
+        cardDirection: direction,
+      ),
     );
   }
 

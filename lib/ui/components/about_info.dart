@@ -16,7 +16,6 @@ class AboutInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (ctx, size) {
-      print('Layout builder height = ${size.maxHeight}');
       return SizedBox(
         width: size.maxWidth,
         child: Center(
@@ -24,12 +23,22 @@ class AboutInfo extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: crossAxisAlignment,
             children: [
-              placeHolder(200, 50),
+              Text(
+                aboutMe,
+                style: Theme.of(context)
+                    .textTheme
+                    .headline4!
+                    .copyWith(color: Theme.of(context).colorScheme.onSurface),
+              ),
               defaultVerticalSpace,
-              placeHolder(size.maxWidth, 150),
+              Text(
+                aboutMeDescription,
+                style: Theme.of(context).textTheme.subtitle1,
+              ),
+              defaultVerticalSpace,
               (cardDirection == Axis.horizontal)
-                  ? _buildHorizontalCards()
-                  : Container(),
+                  ? _buildHorizontalCards(context)
+                  : _buildVerticalCards(context),
             ],
           ),
         ),
@@ -37,44 +46,93 @@ class AboutInfo extends StatelessWidget {
     });
   }
 
-  Widget _buildHorizontalCards() {
+  Widget _buildHorizontalCards(BuildContext context) {
     return Row(
       children: [
         Expanded(
           child: InfoCard(
-            description: Container(),
-            icon: Container(),
-            title: Container(),
+            description: problemSolved,
+            icon: SizedBox.square(
+              dimension: 60,
+              child: Image.asset(
+                codeIcon,
+              ),
+            ),
+            title: totalSolves,
             isSquare: true,
+            padding: EdgeInsets.all(16),
           ).slideAnimation(
             direction: SlideDirection.fromBottom,
             duration: Duration(milliseconds: 1000),
           ),
         ),
-        SizedBox(width: 36),
+        const SizedBox(width: 36),
         Expanded(
           child: InfoCard(
-            description: Container(),
-            icon: Container(),
-            title: Container(),
+            description: totalProjects,
+            icon:
+                SizedBox.square(dimension: 60, child: Image.asset(projectIcon)),
+            title: projects,
             isSquare: true,
           ).slideAnimation(
             direction: SlideDirection.fromBottom,
             duration: Duration(milliseconds: 1200),
           ),
         ),
-        SizedBox(width: 36),
+        const SizedBox(width: 36),
         Expanded(
           child: InfoCard(
-            description: Container(),
-            icon: Container(),
-            title: Container(),
+            description: githubRepository,
+            icon:
+                SizedBox.square(dimension: 60, child: Image.asset(githubIcon)),
+            title: repository,
             isSquare: true,
           ).slideAnimation(
             direction: SlideDirection.fromBottom,
             duration: Duration(milliseconds: 1400),
           ),
         ),
+      ],
+    );
+  }
+
+  Widget _buildVerticalCards(BuildContext context) {
+    return Column(
+      children: [
+        InfoCard(
+          description: problemSolved,
+          icon: SizedBox.square(
+            dimension: 60,
+            child: Image.asset(
+              codeIcon,
+            ),
+          ),
+          title: totalSolves,
+          padding: EdgeInsets.all(16),
+        ).slideAnimation(
+          direction: SlideDirection.fromLeft,
+          duration: Duration(milliseconds: 1000),
+        ),
+        defaultVerticalSpace,
+        InfoCard(
+          description: totalProjects,
+          icon: SizedBox.square(dimension: 60, child: Image.asset(projectIcon)),
+          title: projects,
+          padding: EdgeInsets.all(16),
+        ).slideAnimation(
+          direction: SlideDirection.fromLeft,
+          duration: Duration(milliseconds: 1200),
+        ),
+        defaultVerticalSpace,
+        InfoCard(
+          description: githubRepository,
+          icon: SizedBox.square(dimension: 60, child: Image.asset(githubIcon)),
+          title: repository,
+          padding: EdgeInsets.all(16),
+        ).slideAnimation(
+          direction: SlideDirection.fromLeft,
+          duration: Duration(milliseconds: 1400),
+        )
       ],
     );
   }

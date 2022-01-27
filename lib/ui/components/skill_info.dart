@@ -9,11 +9,17 @@ class SkillInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    TextStyle indicatorTextStyle = Theme.of(context).textTheme.subtitle1!;
+    Widget gap = SizedBox(height: 16);
     return LayoutBuilder(builder: (ctx, size) {
       return SizedBox(
         width: size.maxWidth,
         child: Card(
           elevation: elevation,
+          margin: const EdgeInsets.symmetric(vertical: 36),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(16),
+          ),
           child: Padding(
             padding: const EdgeInsets.all(16.0),
             child: Column(
@@ -26,21 +32,29 @@ class SkillInfo extends StatelessWidget {
                 ),
                 defaultVerticalSpace,
                 AnimatedProgressIndicator(
-                  labelText: 'Hello',
-                  progress: 0.7,
-                ),
-                AnimatedProgressIndicator(
-                  labelText: 'Hello',
-                  progress: 0.3,
-                ),
-                AnimatedProgressIndicator(
-                  labelText: 'Hello',
-                  progress: 1,
-                ),
-                AnimatedProgressIndicator(
-                  labelText: 'Hello',
+                  labelText: flutter,
                   progress: 0.5,
+                  labelTextStyle: indicatorTextStyle,
                 ),
+                gap,
+                AnimatedProgressIndicator(
+                  labelText: native,
+                  progress: 0.7,
+                  labelTextStyle: indicatorTextStyle,
+                ),
+                gap,
+                AnimatedProgressIndicator(
+                  labelText: nodeJs,
+                  progress: 0.5,
+                  labelTextStyle: indicatorTextStyle,
+                ),
+                gap,
+                AnimatedProgressIndicator(
+                  labelText: ui,
+                  progress: 0.7,
+                  labelTextStyle: indicatorTextStyle,
+                ),
+                gap,
               ],
             ),
           ),

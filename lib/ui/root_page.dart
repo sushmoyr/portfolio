@@ -46,7 +46,6 @@ class _RootScreenState extends State<RootScreen> {
   @override
   Widget build(BuildContext context) {
     var deviceType = ResponsiveWidget.of(context);
-    var ratioType = ResponsiveWidget.of(context).ratioType;
 
     List<Widget> destinations = [
       NavDestinationItem(
@@ -88,7 +87,7 @@ class _RootScreenState extends State<RootScreen> {
       appBar: ResponsiveAppbar(
         destinations: destinations,
         scrollController: pageController,
-        elevation: 8,
+        elevation: 4,
         leading: Image.asset(
           'assets/images/logo.png',
           fit: BoxFit.fitHeight,

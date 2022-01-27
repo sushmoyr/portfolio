@@ -8,6 +8,7 @@ class WelcomePageSlogan extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var animationDuration = const Duration(milliseconds: 1200);
     return LayoutBuilder(builder: (context, size) {
       return Center(
         child: Padding(
@@ -21,30 +22,30 @@ class WelcomePageSlogan extends StatelessWidget {
                 welcomeCaption,
                 style: Theme.of(context).textTheme.headline6,
               ).slideAnimation(
-                direction: SlideDirection.fromTopRight,
-                duration: Duration(milliseconds: 800),
+                direction: SlideDirection.fromTop,
+                duration: animationDuration,
               ),
               Text(
                 name,
                 style: Theme.of(context).textTheme.headline3,
               ).slideAnimation(
-                direction: SlideDirection.fromRight,
-                duration: Duration(milliseconds: 950),
+                direction: SlideDirection.fromTopRight,
+                duration: animationDuration,
               ),
               defaultVerticalSpace,
               Text(
                 welcomeDescription,
                 style: Theme.of(context).textTheme.subtitle1,
               ).slideAnimation(
-                direction: SlideDirection.fromBottomRight,
-                duration: Duration(milliseconds: 1100),
+                direction: SlideDirection.fromRight,
+                duration: animationDuration,
               ),
               defaultVerticalSpace,
               LinearGradientButton(
                 onPressed: () {},
                 contentPadding:
-                    EdgeInsets.symmetric(horizontal: 36, vertical: 12),
-                colors: [kDeppGradientColor, kLightGradientColor],
+                    const EdgeInsets.symmetric(horizontal: 36, vertical: 12),
+                colors: const [kDeppGradientColor, kLightGradientColor],
                 child: Text(
                   hireMe,
                   style: Theme.of(context)

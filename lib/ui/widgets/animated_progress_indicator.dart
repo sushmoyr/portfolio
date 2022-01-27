@@ -87,7 +87,6 @@ class LinearProgressPainter extends CustomPainter {
   LinearProgressPainter(this.widthPercent);
   @override
   void paint(Canvas canvas, Size size) {
-    print("Canvas : $size");
     Paint paint = Paint()
       ..style = PaintingStyle.stroke
       ..strokeCap = StrokeCap.round
