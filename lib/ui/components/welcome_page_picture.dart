@@ -10,8 +10,9 @@ class WelcomePagePicture extends StatelessWidget {
     return FractionallySizedBox(
       widthFactor: 0.8,
       heightFactor: 0.8,
-      child: Container(
-        color: kPlaceHolderColor,
+      child: Image.asset(
+        'assets/images/flutter_dev.png',
+        fit: BoxFit.contain,
       ),
     );
   }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:portfolio/utils/constants.dart';
 
 class AnimatedProgressIndicator extends StatefulWidget {
   const AnimatedProgressIndicator({
@@ -47,20 +48,30 @@ class _AnimatedProgressIndicatorState extends State<AnimatedProgressIndicator>
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                Text(widget.labelText),
-                Text('${(value * 100).toStringAsFixed(1)}%'),
+                Text(
+                  widget.labelText,
+                  style: widget.labelTextStyle,
+                ),
+                SizedBox(width: 4),
+                Text(
+                  '${(value * 100).toStringAsFixed(0)}%',
+                  style: widget.labelTextStyle,
+                ),
               ],
             ),
             Container(
               width: double.infinity,
-              padding: EdgeInsets.all(16),
-              height: 48,
+              height: 24,
               decoration: BoxDecoration(
                 border: Border.all(color: Colors.grey),
                 borderRadius: BorderRadius.circular(16),
               ),
-              child: CustomPaint(
-                painter: LinearProgressPainter(value),
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+                child: CustomPaint(
+                  painter: LinearProgressPainter(value),
+                ),
               ),
             ),
           ],
@@ -80,7 +91,13 @@ class LinearProgressPainter extends CustomPainter {
     Paint paint = Paint()
       ..style = PaintingStyle.stroke
       ..strokeCap = StrokeCap.round
-      ..color = Colors.blue
+      ..shader = const LinearGradient(
+          colors: [kDeppGradientColor, kLightGradientColor]).createShader(
+        Rect.fromPoints(
+          Offset.zero,
+          Offset(size.width, size.height),
+        ),
+      )
       ..strokeWidth = size.height;
     double y = size.height / 2;
 

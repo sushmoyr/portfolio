@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:portfolio/ui/widgets/linear_gradient_button.dart';
 import 'package:portfolio/utils/constants.dart';
 import 'package:portfolio/utils/slide_animations.dart';
 
@@ -16,22 +17,44 @@ class WelcomePageSlogan extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              placeHolder(size.maxWidth * 0.2, 16).slideAnimation(
+              Text(
+                welcomeCaption,
+                style: Theme.of(context).textTheme.headline6,
+              ).slideAnimation(
                 direction: SlideDirection.fromTopRight,
                 duration: Duration(milliseconds: 800),
               ),
-              defaultVerticalSpace,
-              placeHolder(size.maxWidth * 0.5, 36).slideAnimation(
+              Text(
+                name,
+                style: Theme.of(context).textTheme.headline3,
+              ).slideAnimation(
                 direction: SlideDirection.fromRight,
                 duration: Duration(milliseconds: 950),
               ),
               defaultVerticalSpace,
-              placeHolder(size.maxWidth * 0.8, 72).slideAnimation(
+              Text(
+                welcomeDescription,
+                style: Theme.of(context).textTheme.subtitle1,
+              ).slideAnimation(
                 direction: SlideDirection.fromBottomRight,
                 duration: Duration(milliseconds: 1100),
               ),
               defaultVerticalSpace,
-              placeHolder(size.maxWidth * 0.2, size.maxWidth * 0.2 * 0.4),
+              LinearGradientButton(
+                onPressed: () {},
+                contentPadding:
+                    EdgeInsets.symmetric(horizontal: 36, vertical: 12),
+                colors: [kDeppGradientColor, kLightGradientColor],
+                child: Text(
+                  hireMe,
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodyText1!
+                      .copyWith(color: Colors.white),
+                ),
+                borderRadius: BorderRadius.circular(8),
+                elevation: 4,
+              ),
             ],
           ),
         ),
