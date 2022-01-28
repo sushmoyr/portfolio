@@ -21,11 +21,11 @@ const Duration kDefaultOpacityDuration = Duration(milliseconds: 1000);
 const String welcomeCaption = 'THIS IS ME';
 const String name = 'SUSHMOY ROY';
 const String welcomeDescription =
-    'You will begin to realise why this exercise is called the Dickens Pattern (with reference to the ghost showing Scrooge some different futures)';
+    'I am an enthusiastic developer and a quick learner. I like to learn new technologies and develop new things. Currently, I am focussing on Mobile Application Development with Flutter. ';
 const String hireMe = 'Hire Me';
 const String aboutMe = 'About Myself';
 const String aboutMeDescription =
-    'inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct standards especially in the workplace. That’s why it’s crucial that, as women, our behavior on the job is beyond reproach. inappropriate behavior is often laughed.';
+    'I am an enthusiastic developer and a quick learner. I like to learn new technologies and develop new things. Currently, I am focussing on Mobile Application Development with Flutter.';
 const String githubIcon = 'assets/images/github_icon.png';
 const String projectIcon = 'assets/images/project_icon.png';
 const String codeIcon = 'assets/images/code_icon.png';
@@ -51,7 +51,7 @@ const String javascript = 'Javascript';
 const String java = 'Java';
 
 const String description =
-    "If you are looking at blank cassettes on the web, you may be very confused at the difference in price. You may see some for as low as \$17 each.";
+    "Currently I am proficient in the following technologies. I am certain that I can successfully build your products. I can guarantee that you will be very pleased and satisfied with my work.";
 
 const String flutterLogo = 'assets/images/flutter_logo.png';
 const String androidLogo = 'assets/images/android_logo.png';

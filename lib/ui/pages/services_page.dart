@@ -32,11 +32,11 @@ class ServicesPage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(
-                    'offerings to my clients'.toUpperCase(),
+                    'offering to my clients'.toUpperCase(),
                     style: _getHeadlineStyle(textTheme, platform),
                   ),
                   Text(
-                    welcomeDescription,
+                    description,
                     textAlign: TextAlign.center,
                     style: Theme.of(context).textTheme.subtitle1,
                   ),
@@ -46,7 +46,7 @@ class ServicesPage extends StatelessWidget {
           ),
           ServiceComponent(),
           SizedBox(
-            height: 300,
+            height: 60,
           ),
         ],
       ),

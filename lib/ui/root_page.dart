@@ -16,6 +16,7 @@ class _RootScreenState extends State<RootScreen> {
     WelcomePage(),
     AboutPage(),
     ServicesPage(),
+    BlogPage(),
   ];
 
   late PageController pageController;
