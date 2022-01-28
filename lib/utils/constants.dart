@@ -53,6 +53,27 @@ const String java = 'Java';
 const String description =
     "If you are looking at blank cassettes on the web, you may be very confused at the difference in price. You may see some for as low as \$17 each.";
 
+const String flutterLogo = 'assets/images/flutter_logo.png';
+const String androidLogo = 'assets/images/android_logo.png';
+const String nodeJsLogo = 'assets/images/nodeJs_logo.png';
+
+const String flutterDev = 'Flutter Apps';
+const String nativeDev = 'Native Apps';
+const String backendDev = 'Server Backend';
+
+const String flutterDevDescription =
+    'Flutter is a framework, developed by google, that can build applications across android, ios, web and desktop platform. '
+    'Flutter is a powerful framework and it can build high quality applications. I am happy to announce that I can build apps for you using flutter which can '
+    'run in various platform easily.';
+const String nativeDevDescription =
+    'Android is the most used platform right now. Android native framework is light, fast and flexible framework to build apps '
+    'for android devices. I am happy to announce that I can build apps for you with help of android native framework and kotlin. Not to mention, Kotlin is powerful '
+    'language that powers native android.';
+const String backendDevDescription =
+    'NodeJs is the most used javascript framework of all time. We can develop server-side applications using javascript with the '
+    'help of NodeJs framework. NodeJs is light, fast and easy to maintain. I am happy to announce that I can build server backend for your front-end, mobile and '
+    'desktop applications.';
+
 const Widget home = Text('Home');
 const Widget about = Text('About');
 const Widget services = Text('Services');

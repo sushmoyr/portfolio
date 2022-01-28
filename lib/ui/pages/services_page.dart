@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:portfolio/ui/components/service_component.dart';
 import 'package:portfolio/ui/widgets/widgets.dart';
 import 'package:portfolio/utils/constants.dart';
 import 'package:portfolio/utils/slide_animations.dart';
@@ -43,19 +44,7 @@ class ServicesPage extends StatelessWidget {
               ),
             ),
           ),
-          Row(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Expanded(
-                  child: ServiceCard(
-                titleStyle: _getHeadlineStyle(textTheme, platform),
-                descriptionStyle: textTheme.subtitle1,
-              )),
-              Expanded(child: ServiceCard()),
-              Expanded(child: ServiceCard()),
-            ],
-          ),
+          ServiceComponent(),
           SizedBox(
             height: 300,
           ),
@@ -91,75 +80,5 @@ class ServicesPage extends StatelessWidget {
     var ratio = 1 - (currentWidth - minWidth) / diff;
     print('ratio = $ratio');
     return max(ratio, 0.6);
-  }
-}
-
-class ServiceCard extends StatefulWidget {
-  const ServiceCard({Key? key, this.titleStyle, this.descriptionStyle})
-      : super(key: key);
-
-  final TextStyle? titleStyle;
-  final TextStyle? descriptionStyle;
-
-  @override
-  _ServiceCardState createState() => _ServiceCardState();
-}
-
-class _ServiceCardState extends State<ServiceCard> {
-  double elevation = 0;
-
-  void _hoverEnter(PointerEvent event) {
-    print('Enter');
-    setState(() {
-      elevation = 16;
-    });
-  }
-
-  void _hoverExit(PointerEvent event) {
-    setState(() {
-      elevation = 0;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: LayoutBuilder(
-        builder: (context, size) => SizedBox(
-          width: size.maxWidth,
-          height: size.maxWidth,
-          child: MouseRegion(
-            onEnter: _hoverEnter,
-            onExit: _hoverExit,
-            child: Card(
-              elevation: elevation,
-              child: Padding(
-                padding: EdgeInsets.all(16),
-                child: Column(
-                  children: [
-                    Expanded(
-                        child: Image.asset(
-                      codeIcon,
-                      fit: BoxFit.contain,
-                    )),
-                    Text(
-                      totalProjects,
-                      style: widget.titleStyle,
-                    ),
-                    Expanded(
-                      child: Text(
-                        welcomeDescription,
-                        style: widget.descriptionStyle,
-                      ),
-                    )
-                  ],
-                ),
-              ),
-            ),
-          ),
-        ),
-      ),
-    );
   }
 }

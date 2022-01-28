@@ -9,3 +9,4 @@ export './info_card.dart';
 export './animated_progress_indicator.dart';
 export './linear_gradient_button.dart';
 export './autosize_text.dart';
+export './tile_card.dart';
