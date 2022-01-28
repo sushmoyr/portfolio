@@ -8,3 +8,4 @@ export './back_to_top_button.dart';
 export './info_card.dart';
 export './animated_progress_indicator.dart';
 export './linear_gradient_button.dart';
+export './autosize_text.dart';

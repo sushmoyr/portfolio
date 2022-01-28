@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:portfolio/ui/widgets/autosize_text.dart';
 import 'package:portfolio/utils/constants.dart';
 
 class InfoCard extends StatelessWidget {
@@ -11,6 +12,9 @@ class InfoCard extends StatelessWidget {
     required this.title,
     required this.description,
     this.spacing = 0,
+    this.runAlignment,
+    this.crossAxisAlignment,
+    this.alignment,
   }) : super(key: key);
 
   final EdgeInsets padding;
@@ -20,6 +24,9 @@ class InfoCard extends StatelessWidget {
   final String description;
   final double elevation;
   final double spacing;
+  final WrapAlignment? runAlignment;
+  final WrapCrossAlignment? crossAxisAlignment;
+  final WrapAlignment? alignment;
 
   @override
   Widget build(BuildContext context) {
@@ -35,18 +42,63 @@ class InfoCard extends StatelessWidget {
             ),
             child: Padding(
               padding: padding,
+              child: Wrap(
+                direction: Axis.vertical,
+                runAlignment: runAlignment ?? WrapAlignment.center,
+                crossAxisAlignment:
+                    crossAxisAlignment ?? WrapCrossAlignment.center,
+                spacing: 4,
+                alignment: alignment ?? WrapAlignment.center,
+                children: [
+                  icon,
+                  Text(
+                    title,
+                    style: Theme.of(context).textTheme.headline6,
+                  ),
+                  Text(
+                    description,
+                    style: Theme.of(context).textTheme.subtitle1,
+                  ),
+                ],
+              ),
+            ),
+            elevation: elevation,
+          ),
+        );
+      },
+    );
+  }
+
+  /*Widget _buildCard(BuildContext context) => ;*/
+}
+
+/*
+
+Card(
+            shape: RoundedRectangleBorder(
+              side: BorderSide(color: Colors.grey.withOpacity(0.5)),
+              borderRadius: BorderRadius.circular(8),
+            ),
+            child: Padding(
+              padding: padding,
               child: (isSquare)
                   ? Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         icon,
-                        Text(
+                        AutoReSizeText(
                           title,
-                          style: Theme.of(context).textTheme.headline6,
+                          maxLines: 1,
+                          style: Theme.of(context).textTheme.headline6!,
                         ),
-                        Text(
-                          description,
-                          style: Theme.of(context).textTheme.subtitle1,
+                        SizedBox(
+                          width: size.maxWidth,
+                          child: FittedBox(
+                            child: Text(
+                              description,
+                              style: Theme.of(context).textTheme.subtitle1!,
+                            ),
+                          ),
                         ),
                       ],
                     )
@@ -55,21 +107,19 @@ class InfoCard extends StatelessWidget {
                       direction: Axis.vertical,
                       children: [
                         icon,
-                        Text(
+                        AutoReSizeText(
                           title,
-                          style: Theme.of(context).textTheme.headline6,
+                          maxLines: 1,
+                          style: Theme.of(context).textTheme.headline6!,
                         ),
-                        Text(
+                        AutoReSizeText(
                           description,
-                          style: Theme.of(context).textTheme.subtitle1,
+                          maxLines: 1,
+                          style: Theme.of(context).textTheme.subtitle1!,
                         ),
                       ],
                     ),
             ),
             elevation: elevation,
-          ),
-        );
-      },
-    );
-  }
-}
+          )
+ */

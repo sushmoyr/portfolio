@@ -6,7 +6,6 @@ class ServicesPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print('Services page');
     return SizedBox(
       width: MediaQuery.of(context).size.width,
       height: ResponsiveWidget.of(context).preferredHeight - kToolbarHeight,

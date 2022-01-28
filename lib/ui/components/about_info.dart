@@ -53,20 +53,18 @@ class AboutInfo extends StatelessWidget {
           child: InfoCard(
             description: problemSolved,
             icon: SizedBox.square(
-              dimension: 60,
               child: Image.asset(
                 codeIcon,
               ),
             ),
             title: totalSolves,
             isSquare: true,
-            padding: EdgeInsets.all(16),
+            padding: const EdgeInsets.all(16),
           ).slideAnimation(
             direction: SlideDirection.fromBottom,
             duration: const Duration(milliseconds: 1000),
           ),
         ),
-        const SizedBox(width: 36),
         Expanded(
           child: InfoCard(
             description: totalProjects,
@@ -79,7 +77,6 @@ class AboutInfo extends StatelessWidget {
             duration: const Duration(milliseconds: 1200),
           ),
         ),
-        const SizedBox(width: 36),
         Expanded(
           child: InfoCard(
             description: githubRepository,
@@ -89,7 +86,7 @@ class AboutInfo extends StatelessWidget {
             isSquare: true,
           ).slideAnimation(
             direction: SlideDirection.fromBottom,
-            duration: Duration(milliseconds: 1400),
+            duration: const Duration(milliseconds: 1400),
           ),
         ),
       ],
@@ -101,6 +98,8 @@ class AboutInfo extends StatelessWidget {
       children: [
         InfoCard(
           description: problemSolved,
+          crossAxisAlignment: WrapCrossAlignment.start,
+          runAlignment: WrapAlignment.start,
           icon: SizedBox.square(
             dimension: 60,
             child: Image.asset(
@@ -108,30 +107,34 @@ class AboutInfo extends StatelessWidget {
             ),
           ),
           title: totalSolves,
-          padding: EdgeInsets.all(16),
+          padding: const EdgeInsets.all(16),
         ).slideAnimation(
           direction: SlideDirection.fromLeft,
-          duration: Duration(milliseconds: 1000),
+          duration: const Duration(milliseconds: 1000),
         ),
         defaultVerticalSpace,
         InfoCard(
           description: totalProjects,
+          crossAxisAlignment: WrapCrossAlignment.start,
+          runAlignment: WrapAlignment.start,
           icon: SizedBox.square(dimension: 60, child: Image.asset(projectIcon)),
           title: projects,
-          padding: EdgeInsets.all(16),
+          padding: const EdgeInsets.all(16),
         ).slideAnimation(
           direction: SlideDirection.fromLeft,
-          duration: Duration(milliseconds: 1200),
+          duration: const Duration(milliseconds: 1200),
         ),
         defaultVerticalSpace,
         InfoCard(
           description: githubRepository,
+          crossAxisAlignment: WrapCrossAlignment.start,
+          runAlignment: WrapAlignment.start,
           icon: SizedBox.square(dimension: 60, child: Image.asset(githubIcon)),
           title: repository,
-          padding: EdgeInsets.all(16),
+          padding: const EdgeInsets.all(16),
         ).slideAnimation(
           direction: SlideDirection.fromLeft,
-          duration: Duration(milliseconds: 1400),
+          duration: const Duration(milliseconds: 1400),
         )
       ],
     );
