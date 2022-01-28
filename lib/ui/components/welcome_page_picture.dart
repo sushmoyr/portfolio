@@ -23,7 +23,7 @@ class _WelcomePagePictureState extends State<WelcomePagePicture> {
       ),
       child: FractionallySizedBox(
         widthFactor: 0.8,
-        heightFactor: 0.8,
+        heightFactor: 1,
         child: Image.asset(
           'assets/images/flutter_dev.png',
           fit: BoxFit.contain,

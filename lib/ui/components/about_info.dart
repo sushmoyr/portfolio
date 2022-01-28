@@ -53,6 +53,7 @@ class AboutInfo extends StatelessWidget {
           child: InfoCard(
             description: problemSolved,
             icon: SizedBox.square(
+              dimension: 60,
               child: Image.asset(
                 codeIcon,
               ),
@@ -98,8 +99,7 @@ class AboutInfo extends StatelessWidget {
       children: [
         InfoCard(
           description: problemSolved,
-          crossAxisAlignment: WrapCrossAlignment.start,
-          runAlignment: WrapAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           icon: SizedBox.square(
             dimension: 60,
             child: Image.asset(
@@ -115,8 +115,7 @@ class AboutInfo extends StatelessWidget {
         defaultVerticalSpace,
         InfoCard(
           description: totalProjects,
-          crossAxisAlignment: WrapCrossAlignment.start,
-          runAlignment: WrapAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           icon: SizedBox.square(dimension: 60, child: Image.asset(projectIcon)),
           title: projects,
           padding: const EdgeInsets.all(16),
@@ -127,8 +126,7 @@ class AboutInfo extends StatelessWidget {
         defaultVerticalSpace,
         InfoCard(
           description: githubRepository,
-          crossAxisAlignment: WrapCrossAlignment.start,
-          runAlignment: WrapAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           icon: SizedBox.square(dimension: 60, child: Image.asset(githubIcon)),
           title: repository,
           padding: const EdgeInsets.all(16),

@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio/ui/widgets/autosize_text.dart';
-import 'package:portfolio/utils/constants.dart';
 
 class InfoCard extends StatelessWidget {
   const InfoCard({
@@ -12,9 +10,10 @@ class InfoCard extends StatelessWidget {
     required this.title,
     required this.description,
     this.spacing = 0,
-    this.runAlignment,
-    this.crossAxisAlignment,
+    this.mainAxisAlignment = MainAxisAlignment.center,
+    this.crossAxisAlignment = CrossAxisAlignment.center,
     this.alignment,
+    this.borderRadius = 8,
   }) : super(key: key);
 
   final EdgeInsets padding;
@@ -24,9 +23,10 @@ class InfoCard extends StatelessWidget {
   final String description;
   final double elevation;
   final double spacing;
-  final WrapAlignment? runAlignment;
-  final WrapCrossAlignment? crossAxisAlignment;
+  final MainAxisAlignment mainAxisAlignment;
+  final CrossAxisAlignment crossAxisAlignment;
   final WrapAlignment? alignment;
+  final double borderRadius;
 
   @override
   Widget build(BuildContext context) {
@@ -38,28 +38,35 @@ class InfoCard extends StatelessWidget {
           child: Card(
             shape: RoundedRectangleBorder(
               side: BorderSide(color: Colors.grey.withOpacity(0.5)),
-              borderRadius: BorderRadius.circular(8),
+              borderRadius: BorderRadius.circular(borderRadius),
             ),
             child: Padding(
               padding: padding,
-              child: Wrap(
-                direction: Axis.vertical,
-                runAlignment: runAlignment ?? WrapAlignment.center,
-                crossAxisAlignment:
-                    crossAxisAlignment ?? WrapCrossAlignment.center,
-                spacing: 4,
-                alignment: alignment ?? WrapAlignment.center,
-                children: [
-                  icon,
-                  Text(
-                    title,
-                    style: Theme.of(context).textTheme.headline6,
-                  ),
-                  Text(
-                    description,
-                    style: Theme.of(context).textTheme.subtitle1,
-                  ),
-                ],
+              child: FittedBox(
+                fit: BoxFit.scaleDown,
+                alignment: (isSquare) ? Alignment.center : Alignment.centerLeft,
+                child: Column(
+                  mainAxisAlignment: mainAxisAlignment,
+                  crossAxisAlignment: crossAxisAlignment,
+                  children: [
+                    icon,
+                    SizedBox(
+                      height: spacing,
+                    ),
+                    Text(
+                      title,
+                      style: Theme.of(context).textTheme.headline6,
+                    ),
+                    SizedBox(
+                      height: spacing,
+                    ),
+                    Text(
+                      description,
+                      textAlign: TextAlign.justify,
+                      style: Theme.of(context).textTheme.subtitle1,
+                    ),
+                  ],
+                ),
               ),
             ),
             elevation: elevation,

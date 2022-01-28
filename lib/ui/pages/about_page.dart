@@ -31,6 +31,9 @@ class AboutPage extends StatelessWidget {
         flex: 1,
         child: _getAboutInfo(Axis.horizontal),
       ),
+      SizedBox(
+        width: 60,
+      ),
       Expanded(
         flex: 1,
         child: _getSkillInfo(),
@@ -47,18 +50,12 @@ class AboutPage extends StatelessWidget {
   }
 
   Widget _getAboutInfo(Axis direction) {
-    return FractionallySizedBox(
-      widthFactor: 0.8,
-      child: AboutInfo(
-        cardDirection: direction,
-      ),
+    return AboutInfo(
+      cardDirection: direction,
     );
   }
 
   Widget _getSkillInfo() {
-    return FractionallySizedBox(
-      widthFactor: 0.8,
-      child: SkillInfo(),
-    );
+    return const SkillInfo();
   }
 }

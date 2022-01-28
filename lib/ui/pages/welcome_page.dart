@@ -22,11 +22,11 @@ class WelcomePage extends StatelessWidget {
         children: [
           (responsiveData.isMobile)
               ? Container()
-              : Expanded(
+              : const Expanded(
                   flex: 1,
                   child: WelcomePagePicture(),
                 ),
-          Expanded(
+          const Expanded(
             child: WelcomePageSlogan(),
           ),
         ],

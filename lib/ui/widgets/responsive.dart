@@ -141,25 +141,3 @@ class SizeBreakPoints {
   static const mobileWidth = 640;
   static const tabletWidth = 1007;
 }
-
-/*
-
-
-static ResponsiveWrapperData of(BuildContext context) {
-    final InheritedResponsiveWrapper? data = context
-        .dependOnInheritedWidgetOfExactType<InheritedResponsiveWrapper>();
-    if (data != null) return data.data;
-    throw FlutterError.fromParts(
-      <DiagnosticsNode>[
-        ErrorSummary(
-            'ResponsiveWrapper.of() called with a context that does not contain a ResponsiveWrapper.'),
-        ErrorDescription(
-            'No Responsive ancestor could be found starting from the context that was passed '
-            'to ResponsiveWrapper.of(). Place a ResponsiveWrapper at the root of the app '
-            'or supply a ResponsiveWrapper.builder.'),
-        context.describeElement('The context used was')
-      ],
-    );
-  }
-}
- */

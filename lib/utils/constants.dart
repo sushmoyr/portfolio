@@ -31,7 +31,7 @@ const String projectIcon = 'assets/images/project_icon.png';
 const String codeIcon = 'assets/images/code_icon.png';
 
 const String totalSolves = '1000+';
-const String problemSolved = 'Problems Solved';
+const String problemSolved = 'Problem Solves';
 
 const String repository = '60+';
 const String githubRepository = 'Github Repository';
@@ -49,6 +49,9 @@ const String kotlin = 'Kotlin';
 const String cpp = 'C++';
 const String javascript = 'Javascript';
 const String java = 'Java';
+
+const String description =
+    "If you are looking at blank cassettes on the web, you may be very confused at the difference in price. You may see some for as low as \$17 each.";
 
 const Widget home = Text('Home');
 const Widget about = Text('About');

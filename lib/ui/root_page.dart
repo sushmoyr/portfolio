@@ -99,7 +99,13 @@ class _RootScreenState extends State<RootScreen> {
       ),
       body: ListView(
         scrollDirection: Axis.vertical,
-        children: pages,
+        children: pages
+            .map((e) => Padding(
+                  padding: EdgeInsets.symmetric(
+                      horizontal: deviceType.isMobile ? 20 : 64),
+                  child: e,
+                ))
+            .toList(),
         controller: pageController,
         cacheExtent: 0,
       ),
