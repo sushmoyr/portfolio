@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio/utils/constants.dart';
 import 'package:portfolio/utils/slide_animations.dart';
 
 class TileCard extends StatefulWidget {
@@ -42,7 +41,6 @@ class _TileCardState extends State<TileCard> {
   }
 
   void _hoverEnter(PointerEvent event) {
-    print('Enter');
     setState(() {
       elevation = widget.hoverElevation;
       borderWidth = 0;

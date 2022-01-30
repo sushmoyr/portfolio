@@ -9,18 +9,20 @@ class AboutPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var responsive = ResponsiveWidget.of(context);
-    print('About page');
-    return Container(
-      width: MediaQuery.of(context).size.width,
-      height: (responsive.isDesktop)
-          ? responsive.preferredHeight - kToolbarHeight
-          : null,
-      child: RowColumn(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        axis: (responsive.isDesktop) ? Axis.horizontal : Axis.vertical,
-        children: (responsive.isDesktop)
-            ? _buildDesktopChildren(context)
-            : _buildOtherChildren(context),
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: responsive.isMobile ? 20 : 64),
+      child: Container(
+        width: MediaQuery.of(context).size.width,
+        height: (responsive.isDesktop)
+            ? responsive.preferredHeight - kToolbarHeight
+            : null,
+        child: RowColumn(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          axis: (responsive.isDesktop) ? Axis.horizontal : Axis.vertical,
+          children: (responsive.isDesktop)
+              ? _buildDesktopChildren(context)
+              : _buildOtherChildren(context),
+        ),
       ),
     );
   }

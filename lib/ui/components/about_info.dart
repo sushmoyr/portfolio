@@ -62,7 +62,7 @@ class AboutInfo extends StatelessWidget {
             isSquare: true,
             padding: const EdgeInsets.all(16),
           ).slideAnimation(
-            direction: SlideDirection.fromBottom,
+            direction: SlideDirection.fromLeft,
             duration: const Duration(milliseconds: 1000),
           ),
         ),
@@ -74,7 +74,7 @@ class AboutInfo extends StatelessWidget {
             title: projects,
             isSquare: true,
           ).slideAnimation(
-            direction: SlideDirection.fromBottom,
+            direction: SlideDirection.fromLeft,
             duration: const Duration(milliseconds: 1200),
           ),
         ),
@@ -86,7 +86,7 @@ class AboutInfo extends StatelessWidget {
             title: repository,
             isSquare: true,
           ).slideAnimation(
-            direction: SlideDirection.fromBottom,
+            direction: SlideDirection.fromLeft,
             duration: const Duration(milliseconds: 1400),
           ),
         ),

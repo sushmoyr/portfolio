@@ -67,10 +67,13 @@ class _InfinityAnimationState extends State<InfinityAnimation>
   @override
   void initState() {
     controller =
-        AnimationController(vsync: this, duration: const Duration(seconds: 1));
+        AnimationController(vsync: this, duration: const Duration(seconds: 3));
     animation = CurvedAnimation(parent: controller, curve: Curves.bounceInOut);
-    controller.addStatusListener(statusListener);
+    //controller.addStatusListener(statusListener);
     controller.forward();
+    controller.repeat(
+      reverse: true,
+    );
     super.initState();
   }
 

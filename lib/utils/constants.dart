@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 const kPlaceHolderColor = Colors.grey;
 const kDeppGradientColor = Color(0xFF8490ff);
 const kLightGradientColor = Color(0xFF62bcfc);
+const kDeepBlueColor = Color(0xFF000410);
 
 Widget placeHolder(double width, double height) => Container(
       width: width,
@@ -11,7 +12,7 @@ Widget placeHolder(double width, double height) => Container(
       color: kPlaceHolderColor,
     );
 
-Widget defaultVerticalSpace = SizedBox(
+Widget defaultVerticalSpace = const SizedBox(
   height: 24,
 );
 
@@ -78,4 +79,4 @@ const Widget home = Text('Home');
 const Widget about = Text('About');
 const Widget services = Text('Services');
 const Widget blog = Text('Blog');
-const Widget contact = Text('Contact');
+const Widget contact = Text('Social');

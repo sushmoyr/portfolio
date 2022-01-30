@@ -28,7 +28,7 @@ class ServiceComponent extends StatelessWidget {
               borderRadius: 16,
               currentElevation: 0,
               hoverElevation: 16,
-              animationDirection: SlideDirection.fromBottom,
+              animationDirection: SlideDirection.fromLeft,
               animationDuration: const Duration(milliseconds: 900),
               icon: Image.asset(flutterLogo),
               title: Text(
@@ -52,7 +52,7 @@ class ServiceComponent extends StatelessWidget {
               borderRadius: 16,
               currentElevation: 0,
               hoverElevation: 16,
-              animationDirection: SlideDirection.fromBottom,
+              animationDirection: SlideDirection.fromLeft,
               animationDuration: const Duration(milliseconds: 1200),
               title: Text(
                 nativeDev,
@@ -75,7 +75,7 @@ class ServiceComponent extends StatelessWidget {
               borderRadius: 16,
               currentElevation: 0,
               hoverElevation: 16,
-              animationDirection: SlideDirection.fromBottom,
+              animationDirection: SlideDirection.fromLeft,
               animationDuration: const Duration(milliseconds: 1500),
               title: Text(
                 backendDev,

@@ -3,6 +3,7 @@ import 'package:portfolio/ui/pages/pages.dart';
 import 'package:portfolio/ui/widgets/widgets.dart';
 import 'package:portfolio/ui/components/components.dart';
 import 'package:portfolio/utils/constants.dart';
+import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
 class RootScreen extends StatefulWidget {
   const RootScreen({Key? key}) : super(key: key);
@@ -12,35 +13,48 @@ class RootScreen extends StatefulWidget {
 }
 
 class _RootScreenState extends State<RootScreen> {
-  final List<Widget> pages = [
-    WelcomePage(),
-    AboutPage(),
-    ServicesPage(),
-    BlogPage(),
-  ];
+  late List<Widget> pages;
 
-  late PageController pageController;
-  int currentPage = 0;
+  late ItemScrollController _itemScrollController;
+  late ItemPositionsListener _itemPositionsListener;
 
-  Widget? backToTopButton;
+  late ValueNotifier<int> currentPage;
 
   @override
   void initState() {
-    pageController = PageController(initialPage: 0, keepPage: false);
-    pageController.addListener(() {
-      var pageOffset = pageController.page!.floor();
-      if (pageOffset != currentPage) {
-        setState(() {
-          currentPage = pageOffset;
-        });
-      }
-    });
+    pages = const [
+      WelcomePage(),
+      AboutPage(),
+      ServicesPage(),
+      ContactPage(),
+    ];
+
+    currentPage = ValueNotifier(0);
+    _itemScrollController = ItemScrollController();
+    _itemPositionsListener = ItemPositionsListener.create();
+
+    _itemPositionsListener.itemPositions.addListener(_positionListener);
+
     super.initState();
+  }
+
+  void _positionListener() {
+    var position = _itemPositionsListener.itemPositions.value;
+    currentPage.value = position.first.index;
+  }
+
+  void _jumpToSection(int index) {
+    currentPage.value = index;
+    _itemScrollController.scrollTo(
+      index: index,
+      duration: const Duration(milliseconds: 700),
+      curve: Curves.easeInOut,
+    );
   }
 
   @override
   void dispose() {
-    pageController.dispose();
+    currentPage.dispose();
     super.dispose();
   }
 
@@ -48,77 +62,56 @@ class _RootScreenState extends State<RootScreen> {
   Widget build(BuildContext context) {
     var deviceType = ResponsiveWidget.of(context);
 
-    List<Widget> destinations = [
-      NavDestinationItem(
-        child: home,
-        isSelected: (currentPage == 0),
-      ),
-      NavDestinationItem(
-        child: about,
-        isSelected: (currentPage == 1),
-      ),
-      NavDestinationItem(
-        child: services,
-        isSelected: (currentPage == 2),
-      ),
-      NavDestinationItem(
-        child: blog,
-        isSelected: (currentPage == 3),
-      ),
-      NavDestinationItem(
-        child: contact,
-        isSelected: (currentPage == 4),
-      ),
-    ];
-
-    return Scaffold(
-      floatingActionButton: BackToTopButton(
-        controller: pageController,
-        onPressed: () {
-          _changePage(0);
-        },
-      ),
-      endDrawer: (deviceType.isDesktop)
-          ? null
-          : EndDrawer(
-              destinations: destinations,
-              spacing: 16,
-              onDestinationClicked: _changePage,
+    return ValueListenableBuilder<int>(
+      builder: (BuildContext context, value, Widget? child) {
+        return Scaffold(
+          endDrawer: (deviceType.isDesktop)
+              ? null
+              : EndDrawer(
+                  destinations: _getDestination(value),
+                  spacing: 16,
+                  onDestinationClicked: _jumpToSection,
+                ),
+          appBar: ResponsiveAppbar(
+            destinations: _getDestination(value),
+            elevation: 4,
+            leading: Image.asset(
+              'assets/images/logo.png',
+              fit: BoxFit.fitHeight,
             ),
-      appBar: ResponsiveAppbar(
-        destinations: destinations,
-        scrollController: pageController,
-        elevation: 4,
-        leading: Image.asset(
-          'assets/images/logo.png',
-          fit: BoxFit.fitHeight,
-        ),
-        collapsedAction: Icon(Icons.menu),
-        verticalPadding: 0,
-        actionItemSpacing: 16,
-        onActionItemClicked: _changePage,
-      ),
-      body: ListView(
-        scrollDirection: Axis.vertical,
-        children: pages
-            .map((e) => Padding(
-                  padding: EdgeInsets.symmetric(
-                      horizontal: deviceType.isMobile ? 20 : 64),
-                  child: e,
-                ))
-            .toList(),
-        controller: pageController,
-        cacheExtent: 0,
-      ),
+            collapsedAction: const Icon(Icons.menu),
+            verticalPadding: 0,
+            actionItemSpacing: 16,
+            onActionItemClicked: _jumpToSection,
+          ),
+          body: ScrollablePositionedList.builder(
+            itemCount: pages.length,
+            itemBuilder: (context, index) => pages[index],
+            itemScrollController: _itemScrollController,
+            itemPositionsListener: _itemPositionsListener,
+          ),
+        );
+      },
+      valueListenable: currentPage,
     );
   }
 
-  void _changePage(int page) {
-    print(page);
-    pageController.animateToPage(
-      page,
-      duration: Duration(milliseconds: 800),
-      curve: Curves.easeInOut,
-    );
-  }
+  static List<Widget> _getDestination(int selected) => [
+        NavDestinationItem(
+          child: home,
+          isSelected: (selected == 0),
+        ),
+        NavDestinationItem(
+          child: about,
+          isSelected: (selected == 1),
+        ),
+        NavDestinationItem(
+          child: services,
+          isSelected: (selected == 2),
+        ),
+        NavDestinationItem(
+          child: contact,
+          isSelected: (selected == 4),
+        ),
+      ];
 }
